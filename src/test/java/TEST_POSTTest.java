@@ -19,7 +19,6 @@ public class TEST_POSTTest {
 		System.out.println(map);
 		
 		given().
-		body(((JSONObject) map).toJSONString()).
 		when().
 		 post("https://reqres.in/api/users").
 		 then().
