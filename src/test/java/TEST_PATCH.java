@@ -1,29 +1,26 @@
 import static io.restassured.RestAssured.given;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.json.simple.JSONObject;
 import org.junit.Test;
 
 public class TEST_PATCH {
 
 	@Test
-public void test1_post() {
+public void test3_patch() {
 		
-		Map<String, Object> map = new HashMap<String, Object>();
+		JSONObject object = new JSONObject();
 		
-		map.put("Name: ", "Angel");
-		map.put("Job: ", "Cashier");
+		object.put("Name: ", "Angel");
+		object.put("Job: ", "Cashier");
 		
-		System.out.println(map);
+		System.out.println(object.toJSONString());
 		
 		given().
-		body(((JSONObject) map).toJSONString()).
+		body(object.toJSONString()).
 		when().
 		 patch("https://reqres.in/api/users/2").
 		 then().
-		 statusCode(201);
+		 statusCode(200).log().all();;
 		
 	}
 

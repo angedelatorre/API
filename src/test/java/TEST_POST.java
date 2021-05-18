@@ -1,5 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.testng.annotations.Test;
@@ -11,19 +9,19 @@ public class TEST_POST {
 	@Test
 	public void test1_post() {
 		
-		Map<String, Object> map = new HashMap<String, Object>();
+		JSONObject object = new JSONObject();
 		
-		map.put("Name: ", "Angel");
-		map.put("Job: ", "engineer");
+		object.put("Name: ", "Angel");
+		object.put("Job: ", "engineer");
 		
-		System.out.println(map);
+		System.out.println(object.toJSONString());
 		
 		given().
-		body(((JSONObject) map).toJSONString()).
+		body(object.toJSONString()).
 		when().
 		 post("https://reqres.in/api/users").
 		 then().
-		 statusCode(201);
+		 statusCode(201).log().all();;
 		
 	}
 	

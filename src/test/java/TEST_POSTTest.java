@@ -1,8 +1,5 @@
 import static io.restassured.RestAssured.given;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.json.simple.JSONObject;
 import org.junit.Test;
 
@@ -11,19 +8,19 @@ public class TEST_POSTTest {
 	@Test
 	public void test1_post() {
 		
-		Map<String, Object> map = new HashMap<String, Object>();
+		JSONObject object = new JSONObject();
 		
-		map.put("Name: ", "Angel");
-		map.put("Job: ", "engineer");
-		
-		System.out.println(map);
+		object.put("Name: ", "Angel");
+		object.put("Job: ", "engineer");
+
+		System.out.println(object.toJSONString());
 		
 		given().
+		body(object.toJSONString()).
 		when().
 		 post("https://reqres.in/api/users").
 		 then().
-		 statusCode(201);
-		
+		 statusCode(201).log().all();;
 	}
 	
 }

@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class TEST_GET {
 
-	@Test
+	//@Test
 	public void test_get() {
 		
 		given().
@@ -13,6 +13,16 @@ public class TEST_GET {
 		then().
 		statusCode(200).
 		log().all();
+	}
+	@Test
+	public void test4_delete() {
+		
+		System.out.println("Delete");
+		 when().
+		 delete("https://reqres.in/api/users/2").
+		 then().
+		 statusCode(200).log().all();;
+	
 	}
 		
 
